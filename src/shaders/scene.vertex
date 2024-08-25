@@ -1,16 +1,13 @@
 #version 460 core
 
 layout (location = 0) in vec2 aPos;
-// layout (location = 1) in vec2 aTexCoords;
 
-// out vec2 TexCoords;
-
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 projection;
+uniform vec2 translate;
+uniform vec2 stretch;
 
 void main()
 {
-    // TexCoords = aTexCoords;    
-    gl_Position = projection * view * model * vec4(aPos.xy, 0, 1.0);
+    vec2 scaled = stretch * aPos;
+    vec2 moved = scaled + translate;
+    gl_Position = vec4(moved.xy, 0, 1.0);
 }
